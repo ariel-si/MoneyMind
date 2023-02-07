@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_mind/componets/grafico_pizza.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -15,45 +16,29 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.amber[50],
-          title: const Text(
-            "Dashboard",
-            style: TextStyle(color: Colors.black),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.person, color: Colors.black),
-            ),
-          ],
+      appBar: AppBar(
+        backgroundColor: Colors.amber[50],
+        title: const Text(
+          "Dashboard",
+          style: TextStyle(color: Colors.black),
         ),
-        body: GridView.count(
-          primary: false,
-          padding: const EdgeInsets.all(20),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          crossAxisCount: 2,
-          childAspectRatio: 3,
-          children: <Widget>[
-            CardDashboard(
-              cor: Colors.green,
-              descricao: "Receita",
-              valor: "1.500,00",
-            ),
-            CardDashboard(
-              cor: Colors.orange,
-              descricao: "Gastos Fixos",
-              valor: "3.500,00",
-            ),
-            CardDashboard(
-              cor: Colors.redAccent,
-              descricao: "Gastos variaveis",
-              valor: "500,00",
-            ),
-          ],
-        ));
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person, color: Colors.black),
+          ),
+        ],
+      ),
+      body: Grafico(),
+    );
   }
+}
+
+class _Infections {
+  _Infections(this.year, this.victims);
+
+  final String year;
+  final double victims;
 }
 
 class CardDashboard extends StatelessWidget {
@@ -93,7 +78,8 @@ class CardDashboard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(descricao,
+                  Text(
+                    descricao,
                     style: const TextStyle(fontSize: 20),
                   ),
                   Text(
