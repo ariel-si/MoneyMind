@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class Grafico extends StatelessWidget {
-  Grafico({Key? key}) : super(key: key);
+class Grafico extends StatefulWidget {
 
+  var valor;
+
+  Grafico({Key? key, required this.valor}) : super(key: key);
+
+  @override
+  State<Grafico> createState() => _GraficoState();
+}
+
+class _GraficoState extends State<Grafico> {
   @override
   Widget build(BuildContext context) {
     List<_PieData> pieData = [
-      _PieData("Vareavel", 33, "1.500,00"),
-      _PieData("Fixo", 33, "1.500,00"),
-      _PieData("Receita", 34, "1.503,00"),
+      _PieData("Gastos", 50, "${widget.valor}"),
+      _PieData("Receita", 50, "${widget.valor}"),
     ];
     return Container(
       height: 250,
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-              color: Colors.grey, //New
-              blurRadius: 25.0,
-              offset: Offset(1, 15))
+            color: Colors.grey,
+            offset: Offset(0.0, 2.0), //(x,y)
+            blurRadius: 6.0,
+          ),
         ],
       ),
       child: Center(

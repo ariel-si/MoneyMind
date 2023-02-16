@@ -17,7 +17,6 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[50],
         title: const Text(
           "Dashboard",
           style: TextStyle(color: Colors.black),
@@ -29,16 +28,27 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      body: Grafico(),
+      body: Column(
+        children: [
+          Grafico(valor: 1500),
+          CardDashboard(
+            cor: Colors.white,
+            descricao: "Receita",
+            valor: 0.00,
+          ),
+          CardDashboard(
+            cor: Colors.white,
+            descricao: "Gastos",
+            valor: 0.00,
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
-}
-
-class _Infections {
-  _Infections(this.year, this.victims);
-
-  final String year;
-  final double victims;
 }
 
 class CardDashboard extends StatelessWidget {
@@ -56,55 +66,34 @@ class CardDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 220,
-        height: 100,
-        margin: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 2.0), //(x,y)
-              blurRadius: 6.0,
-            ),
-          ],
-          borderRadius: BorderRadius.circular(10),
-          color: cor,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 4,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    descricao,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    "R\$: $valor",
-                    style: const TextStyle(fontSize: 15),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                    color: Colors.white30,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(10),
-                        bottomRight: Radius.circular(10))),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.add),
-                ),
-              ),
-            )
-          ],
-        ));
+      height: 100,
+      width: double.infinity,
+      margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 2.0), //(x,y)
+            blurRadius: 6.0,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(10),
+        color: cor,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            descricao,
+            style: const TextStyle(fontSize: 20),
+          ),
+          Text(
+            "R\$: $valor",
+            style: const TextStyle(fontSize: 15),
+          ),
+        ],
+      ),
+    );
   }
 }
